@@ -2,11 +2,11 @@ import {
   Column,
   Model,
   Table,
-  DataType,
   PrimaryKey,
   Default,
   IsUUID,
-  BelongsToMany,
+  DataType,
+  ForeignKey,
 } from 'sequelize-typescript';
 import { Order } from './order.model';
 
@@ -21,16 +21,14 @@ export class Product extends Model<Product> {
   })
   id: string;
 
-  @Column
+  @Column({ allowNull: false })
   name: string;
 
-  @Column
-  description: string;
-
-  @Column
+  @Column({ allowNull: true })
   price: number;
 
-  @BelongsToMany(() => Order, { through: 'OrderProduct' })
+  @ForeignKey(() => Order)
+  orderId: string;
   orders: Order[];
 
   @Column({ allowNull: false, defaultValue: Date.now() })

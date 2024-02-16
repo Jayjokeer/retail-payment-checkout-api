@@ -6,7 +6,7 @@ import {
   PrimaryKey,
   Default,
   IsUUID,
-  BelongsToMany,
+  HasMany,
 } from 'sequelize-typescript';
 import { Product } from './product.model';
 import { OrderStatus } from './enums/order-status.enum';
@@ -40,7 +40,7 @@ export class Order extends Model<Order> {
   })
   status: OrderStatus;
 
-  @BelongsToMany(() => Product, { through: 'OrderProduct' })
+  @HasMany(() => Product)
   products: Product[];
 
   @Column(DataType.DECIMAL)

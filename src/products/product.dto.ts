@@ -5,10 +5,6 @@ export class ProductDto {
   @Length(5, 255)
   name: string;
 
-  @IsString()
-  @Length(10, 500)
-  description: string;
-
   @IsNumber()
   price: number;
 }

@@ -22,13 +22,16 @@ export class Customer extends Model<Customer> {
   @Column
   name: string;
 
-  @Column
+  @Column({
+    unique: true,
+    allowNull: false,
+  })
   email: string;
 
   @Column
   phoneNumber: string;
 
-  @Column
+  @Column({ allowNull: false })
   password: string;
 
   @Column({ allowNull: false, defaultValue: Date.now() })
