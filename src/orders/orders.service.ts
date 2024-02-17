@@ -13,9 +13,6 @@ export class OrdersService {
   }
 
   async updateOrder(id: string, status: OrderStatus) {
-    console.log(status);
-    const stat = OrderDto[status];
-    console.log(stat);
     const order = await this.orderModel.findByPk(id);
     if (!order) throw new HttpException('Order not found', 404);
     if (status === OrderStatus.DELIVERED)
@@ -26,13 +23,5 @@ export class OrdersService {
     order.status = status;
     await order.save();
     return order;
-    // const [rowsUpdated, [updatedOrder]] = await this.orderModel.update(
-    //   { status: status },
-    //   { where: { id }, returning: true },
-    // );
-    // if (rowsUpdated === 0) {
-    //   throw new HttpException(`Order with id ${id} not found`, 404);
-    // }
-    // return updatedOrder;
   }
 }
