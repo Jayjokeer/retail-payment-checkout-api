@@ -9,4 +9,7 @@ export class OrderDto {
   price: number;
 
   products: Product[];
+
+  @IsString()
+  productId: string;
 }
