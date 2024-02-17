@@ -7,16 +7,19 @@ import {
   Post,
   Put,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { Product } from '../schemas/product.model';
 import { ProductDto } from './product.dto';
+import { JwtAuthGuard } from 'src/middleware/authGuard';
 
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   async createProduct(@Body() product: ProductDto): Promise<Product> {
     return this.productsService.createProduct(product);
   }

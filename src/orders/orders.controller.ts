@@ -18,7 +18,7 @@ export class OrdersController {
   ): Promise<Order> {
     return await this.ordersService.updateOrder(id, status);
   }
-  @Get()
+  @Get(':id')
   async getOrderById(@Param('id') id: string): Promise<Order> {
     return await this.ordersService.getOrderById(id);
   }
