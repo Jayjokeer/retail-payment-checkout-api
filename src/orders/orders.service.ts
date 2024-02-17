@@ -24,4 +24,9 @@ export class OrdersService {
     await order.save();
     return order;
   }
+  async getOrderById(id: string): Promise<Order> {
+    const order = await this.orderModel.findByPk(id);
+    if (!order) throw new HttpException('Order not found', 404);
+    return order;
+  }
 }

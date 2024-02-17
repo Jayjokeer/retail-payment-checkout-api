@@ -7,8 +7,6 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { TransactionsModule } from './transactions/transactions.module';
 import { JwtModule } from '@nestjs/jwt/dist/jwt.module';
 import { JwtService } from '@nestjs/jwt';
-// import { JwtMiddleware } from './middleware/jwt.middleware';
-// import { AuthGuard } from './middleware/authGuard';
 
 @Module({
   imports: [

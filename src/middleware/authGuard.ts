@@ -10,11 +10,6 @@ export class JwtAuthGuard implements CanActivate {
   ) {}
 
   canActivate(context: ExecutionContext): boolean {
-    const roles = this.reflector.get('roles', context.getHandler());
-    if (!roles) {
-      return true;
-    }
-
     const request = context.switchToHttp().getRequest();
     const authHeader = request.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -26,7 +21,7 @@ export class JwtAuthGuard implements CanActivate {
       const decoded = this.jwtService.verify(token, {
         secret: process.env.JWT_SECRET,
       });
-      if (!decoded || !decoded.userId || !roles.includes(decoded.role)) {
+      if (!decoded || !decoded.sub) {
         return false;
       }
       request.user = decoded;
