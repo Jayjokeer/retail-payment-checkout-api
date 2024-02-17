@@ -25,6 +25,10 @@ export class ProductsService {
   }
 
   async updateProduct(id: string, product: ProductDto): Promise<Product> {
+    const foundProduct = await this.productModel.findByPk(id);
+    if (!foundProduct) {
+      throw new HttpException(`Product with id ${id} not found`, 404);
+    }
     const [rowsUpdated, [updatedProduct]] = await this.productModel.update(
       product,
       {
@@ -39,6 +43,10 @@ export class ProductsService {
   }
 
   async deleteProduct(id: string): Promise<string> {
+    const foundProduct = await this.productModel.findByPk(id);
+    if (!foundProduct) {
+      throw new HttpException(`Product with id ${id} not found`, 404);
+    }
     const rowsDeleted = await this.productModel.destroy({ where: { id } });
     if (rowsDeleted === 0) {
       throw new HttpException(`Product with id ${id} not found`, 404);

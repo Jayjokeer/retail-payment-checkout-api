@@ -23,7 +23,7 @@ export class Order extends Model<Order> {
   id: string;
 
   @Column({ allowNull: false })
-  userId: number;
+  userId: string;
 
   @Column({ allowNull: false, defaultValue: Date.now() })
   createdAt: Date;
@@ -36,7 +36,7 @@ export class Order extends Model<Order> {
       'DELIVERED',
       'CANCELED',
     ),
-    defaultValue: DataType.ENUM('PENDING'),
+    defaultValue: 'PENDING',
   })
   status: OrderStatus;
 

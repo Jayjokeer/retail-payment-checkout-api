@@ -3,7 +3,6 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { ProductsController } from './products.controller';
 import { ProductsService } from './products.service';
 import { Product } from '../schemas/product.model';
-// import { AuthGuard } from 'src/middleware/authGuard';
 import { JwtService } from '@nestjs/jwt';
 
 @Module({

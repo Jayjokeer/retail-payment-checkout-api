@@ -4,6 +4,7 @@ import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { TransactionsModule } from './transactions/transactions.module';
 // import { JwtMiddleware } from './middleware/jwt.middleware';
 // import { AuthGuard } from './middleware/authGuard';
 
@@ -12,6 +13,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
     CustomersModule,
     OrdersModule,
     ProductsModule,
+    TransactionsModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
