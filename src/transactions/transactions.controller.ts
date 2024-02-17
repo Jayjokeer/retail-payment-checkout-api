@@ -1,12 +1,14 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { TransactionsService } from './transactions.service';
 import { TransactionDto } from './transaction.dto';
+import { JwtAuthGuard } from 'src/middleware/authGuard';
 
 @Controller('transactions')
 export class TransactionsController {
   constructor(private readonly transactionService: TransactionsService) {}
 
   @Post('/initiate-payment')
+  @UseGuards(JwtAuthGuard)
   async initializeTransaction(
     @Body() transaction: TransactionDto,
   ): Promise<string> {

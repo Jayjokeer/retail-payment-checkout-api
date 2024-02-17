@@ -5,6 +5,8 @@ import { ProductsModule } from './products/products.module';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { TransactionsModule } from './transactions/transactions.module';
+import { JwtModule } from '@nestjs/jwt/dist/jwt.module';
+import { JwtService } from '@nestjs/jwt';
 // import { JwtMiddleware } from './middleware/jwt.middleware';
 // import { AuthGuard } from './middleware/authGuard';
 
@@ -27,8 +29,12 @@ import { TransactionsModule } from './transactions/transactions.module';
       autoLoadModels: true,
       synchronize: true,
     }),
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '1h' },
+    }),
   ],
   controllers: [],
-  providers: [],
+  providers: [JwtService],
 })
 export class AppModule {}
