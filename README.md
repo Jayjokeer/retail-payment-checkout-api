@@ -44,6 +44,8 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+## Postman Documentation
+This is the Postman Documentation link: https://documenter.getpostman.com/view/27781003/2sA2r81P6j
 
 ## Test
 
